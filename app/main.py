@@ -24,6 +24,11 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+from app.routers import auth, users
+
+app.include_router(auth.router, prefix="/auth", tags=["Auth"])
+app.include_router(users.router, prefix="/users", tags=["Users"])
+
 @app.get("/health", tags=["Health"])
 def health_check():
     return {"status": "success", "message": "Finance API is running"}
