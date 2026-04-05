@@ -24,11 +24,12 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-from app.routers import auth, users, records
+from app.routers import auth, users, records, dashboard
 
 app.include_router(auth.router, prefix="/auth", tags=["Auth"])
 app.include_router(users.router, prefix="/users", tags=["Users"])
 app.include_router(records.router, prefix="/records", tags=["Records"])
+app.include_router(dashboard.router, prefix="/dashboard", tags=["Dashboard"])
 
 @app.get("/health", tags=["Health"])
 def health_check():
