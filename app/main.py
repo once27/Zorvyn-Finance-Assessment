@@ -16,6 +16,8 @@ app = FastAPI(
     lifespan=lifespan,
 )
 
+from app.exceptions import register_exception_handlers
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -23,6 +25,8 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+register_exception_handlers(app)
 
 from app.routers import auth, users, records, dashboard
 
